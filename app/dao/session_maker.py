@@ -1,5 +1,5 @@
 from contextlib import asynccontextmanager
-from typing import Callable, Optional, AsyncGenerator
+from typing import Callable, Optional, AsyncGenerator, Any
 from fastapi import Depends
 from loguru import logger
 from sqlalchemy.ext.asyncio import async_sessionmaker, AsyncSession
@@ -75,7 +75,11 @@ class DatabaseSessionManager:
                 async with self.session_maker() as session:
                     try:
                         if isolation_level:
-                            await session.execute(text(f"SET TRANSACTION ISOLATION LEVEL {isolation_level}"))
+                            await session.execute(
+                                text(
+                                    f"SET TRANSACTION ISOLATION LEVEL {isolation_level}"
+                                )
+                            )
 
                         result = await method(*args, session=session, **kwargs)
 
@@ -95,12 +99,12 @@ class DatabaseSessionManager:
         return decorator
 
     @property
-    def session_dependency(self) -> Callable:
+    def session_dependency(self) -> Any:
         """Возвращает зависимость для FastAPI, обеспечивающую доступ к сессии без транзакции."""
         return Depends(self.get_session)
 
     @property
-    def transaction_session_dependency(self) -> Callable:
+    def transaction_session_dependency(self) -> Any:
         """Возвращает зависимость для FastAPI с поддержкой транзакций."""
         return Depends(self.get_transaction_session)
 

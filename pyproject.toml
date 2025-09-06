@@ -18,6 +18,7 @@ dependencies = [
     "pydantic[email]",
     "python-jose",
     "sqlalchemy",
+    "types-python-jose>=3.5.0.20250531",
     "uvicorn",
 ]
 
