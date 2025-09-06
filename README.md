@@ -68,21 +68,24 @@
 ### Основные модули
 
 - **app/auth** - Модуль для аутентификации и авторизации:
-    - **auth.py**: Логика для входа и регистрации
-    - **dao.py**: Объект доступа к данным для работы с пользователями
-    - **dependencies.py**: Внедрение зависимостей для авторизации
-    - **models.py**: Модели данных для пользователей
-    - **router.py**: Маршрутизация запросов, связанных с авторизацией
-    - **schemas.py**: Схемы Pydantic для валидации запросов и ответов
-    - **utils.py**: Генерация и проверка токенов
+  
+  - **auth.py**: Логика для входа и регистрации
+  - **dao.py**: Объект доступа к данным для работы с пользователями
+  - **dependencies.py**: Внедрение зависимостей для авторизации
+  - **models.py**: Модели данных для пользователей
+  - **router.py**: Маршрутизация запросов, связанных с авторизацией
+  - **schemas.py**: Схемы Pydantic для валидации запросов и ответов
+  - **utils.py**: Генерация и проверка токенов
 
 - **app/dao** - Базовый DAO для доступа к данным приложения.
-    - **base.py**: Общие методы CRUD для работы с БД
+  
+  - **base.py**: Общие методы CRUD для работы с БД
 
 - **app/migration** - Управление миграциями базы данных с помощью Alembic:
-    - **versions/**: Файлы миграций
-    - **env.py**: Конфигурация среды Alembic
-    - **script.py.mako**: Шаблон для генерации миграций
+  
+  - **versions/**: Файлы миграций
+  - **env.py**: Конфигурация среды Alembic
+  - **script.py.mako**: Шаблон для генерации миграций
 
 - **config.py** - Файл конфигурации с параметрами приложения, загружаемыми из `.env`.
 
@@ -122,26 +125,26 @@ async def register_user(user_data: SUserRegister, session: AsyncSession = Sessio
 ## Запуск приложения
 
 1. Клонируйте репозиторий:
-
+   
    ```bash
    git clone https://github.com/Yakvenalex/FastApiWithAuthSample.git .
    ```
 
 2. Установите зависимости:
-
+   
    ```bash
    pip install -r requirements.txt
    ```
 
 3. Создайте и настройте `.env` файл:
-
+   
    ```env
    SECRET_KEY=supersecretkey
    ALGORITHM=HS256
    ```
 
 4. Запустите приложение с Uvicorn:
-
+   
    ```bash
    uvicorn app.main:app --reload
    ```
@@ -149,24 +152,24 @@ async def register_user(user_data: SUserRegister, session: AsyncSession = Sessio
 ## Миграции базы данных
 
 1. Инициализируйте Alembic:
-
+   
    ```bash
    cd app
    alembic init -t async migration
    ```
-
+   
    Затем переместите `alembic.ini` в корень проекта.
 
 2. В `alembic.ini` установите `script_location` как `app/migration`.
 
 3. Создайте миграцию:
-
+   
    ```bash
    alembic revision --autogenerate -m "Initial migration"
    ```
 
 4. Примените миграции:
-
+   
    ```bash
    alembic upgrade head
    ```

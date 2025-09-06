@@ -1,0 +1,25 @@
+[project]
+name = "fastapiwithauthsample"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "aiosqlite",
+    "alembic",
+    "bcrypt",
+    "black>=25.1.0",
+    "fastapi[all]",
+    "jinja2",
+    "loguru",
+    "mypy",
+    "passlib[bcrypt]",
+    "pydantic-settings",
+    "pydantic[email]",
+    "python-jose",
+    "sqlalchemy",
+    "uvicorn",
+]
+
+[[tools.mypy]]
+strict = true
